@@ -1,0 +1,25 @@
+.rtm-pagination-wrapper {
+  display: flex;
+  list-style: none;
+  .rtm-pagination-item {
+    padding: 6px;
+    margin-inline: 3px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    &:hover {
+      background: #dfdfdf;
+    }
+
+    &.active {
+      border: 0.5px solid rgb(43, 179, 224);
+    }
+    &.disable {
+      color: #a1a1a1;
+      cursor: not-allowed;
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+}
