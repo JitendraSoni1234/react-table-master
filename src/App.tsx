@@ -8,13 +8,14 @@ function App() {
     header: {
       search: { value: searchText, onChange: setSearchText },
     },
-    pagination: { pageNo, total: 100, perPage: 5, onChange: setPageNo },
+    pagination: { pageNo, total: 10000000, perPage: 5, onChange: setPageNo },
   };
   return (
     <>
       <Table {...tableProps} />
 
       <h2>Value: {searchText}</h2>
+      <h2>Page: {pageNo}</h2>
     </>
   );
 }

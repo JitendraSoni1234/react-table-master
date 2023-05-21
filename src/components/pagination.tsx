@@ -35,6 +35,14 @@ function Pagination({ pageNo = 1, total = 100, perPage = 10, showPagination = tr
     pages.push(i);
   }
 
+  function handleMouseEnter(e: React.MouseEvent<HTMLLIElement>, text: string) {
+    (e.target as HTMLLIElement).innerHTML = text;
+  }
+  
+  function handleMouseLeave(e: React.MouseEvent<HTMLLIElement>) {
+    (e.target as HTMLLIElement).innerHTML = '•••';
+  }
+
   return (
     <ul className='rtm-pagination-wrapper'>
       <li className={`rtm-pagination-item ${pageNo === 1 ? 'disable' : ''}`} onClick={() => pageNo > 1 && onChange?.(pageNo - 1)}>
@@ -46,7 +54,11 @@ function Pagination({ pageNo = 1, total = 100, perPage = 10, showPagination = tr
             {1}
           </li>
           {startPage > 2 && (
-            <li className='rtm-pagination-item' onClick={() => onChange?.(pageNo - 5)}>
+            <li
+              className='rtm-pagination-item rtm-pagination-ellipsis'
+              onMouseEnter={(e) => handleMouseEnter(e, '<<')}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => onChange?.(pageNo - 5)}>
               •••
             </li>
           )}
@@ -60,7 +72,11 @@ function Pagination({ pageNo = 1, total = 100, perPage = 10, showPagination = tr
       {endPage < totalPages && (
         <>
           {endPage < totalPages - 1 && (
-            <li onClick={() => onChange?.(pageNo + 5)} className='rtm-pagination-item'>
+            <li
+              className='rtm-pagination-item rtm-pagination-ellipsis'
+              onMouseEnter={(e) => handleMouseEnter(e, '>>')}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => onChange?.(pageNo + 5)}>
               •••
             </li>
           )}
